@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useExpenseContext } from "@/context/ExpenseContext";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 
 export function Header() {
   const { user, setUser, clearExpenses } = useExpenseContext();
@@ -74,19 +74,24 @@ export function Header() {
           </>
         ) : (
           <>
-            <Button variant="ghost" size="sm" asChild>
-              <Link href="/login" data-testid="btn-login">
-                Login
-              </Link>
-            </Button>
-            <Button size="sm" asChild>
-              <Link href="/register" data-testid="btn-register">
-                Register
-              </Link>
-            </Button>
+            <Link
+              href="/login"
+              data-testid="btn-login"
+              className={buttonVariants({ variant: "ghost", size: "sm" })}
+            >
+              Login
+            </Link>
+            <Link
+              href="/register"
+              data-testid="btn-register"
+              className={buttonVariants({ variant: "default", size: "sm" })}
+            >
+              Register
+            </Link>
           </>
         )}
       </nav>
     </header>
   );
 }
+

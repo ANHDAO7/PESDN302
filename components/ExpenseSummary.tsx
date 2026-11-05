@@ -65,3 +65,4 @@ export function ExpenseSummary({ summary }: ExpenseSummaryProps) {
     </Card>
   );
 }
+

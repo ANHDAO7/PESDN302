@@ -87,3 +87,4 @@ export function ExpenseFilters({
     </Card>
   );
 }
+

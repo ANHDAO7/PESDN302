@@ -23,3 +23,4 @@ export function ok(data: unknown) {
 export function created(data: unknown) {
   return NextResponse.json(data, { status: 201 });
 }
+

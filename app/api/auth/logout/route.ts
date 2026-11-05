@@ -7,3 +7,4 @@ export async function POST() {
   response.cookies.set(cookie.name, cookie.value, cookie.options as Parameters<typeof response.cookies.set>[2]);
   return response;
 }
+

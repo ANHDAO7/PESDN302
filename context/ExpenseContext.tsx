@@ -123,3 +123,4 @@ export function useExpenseContext() {
   if (!ctx) throw new Error("useExpenseContext must be inside ExpenseProvider");
   return ctx;
 }
+

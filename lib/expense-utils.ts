@@ -38,3 +38,4 @@ export type CategoryType = (typeof CATEGORY_ORDER)[number];
 export function isValidCategory(cat: string): cat is CategoryType {
   return CATEGORY_ORDER.includes(cat as CategoryType);
 }
+
