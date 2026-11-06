@@ -19,6 +19,8 @@ interface ReadingLogContextType {
   user: User | null;
   readingLogs: ReadingLog[];
   loading: boolean;
+  refreshTrigger: number;
+  triggerRefresh: () => void;
   setUser: (user: User | null) => void;
   loadReadingLogs: (params?: Record<string, string>) => Promise<void>;
   addReadingLog: (log: ReadingLog) => void;
@@ -37,6 +39,11 @@ export function ReadingLogProvider({
   const [user, setUserState] = useState<User | null>(null);
   const [readingLogs, setReadingLogs] = useState<ReadingLog[]>([]);
   const [loading, setLoading] = useState(false);
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
+
+  const triggerRefresh = useCallback(() => {
+    setRefreshTrigger((v) => v + 1);
+  }, []);
 
   const setUser = useCallback((u: User | null) => {
     setUserState(u);
@@ -78,17 +85,20 @@ export function ReadingLogProvider({
         return a.bookTitle.toLowerCase().localeCompare(b.bookTitle.toLowerCase());
       });
     });
-  }, []);
+    triggerRefresh();
+  }, [triggerRefresh]);
 
   const updateReadingLog = useCallback((log: ReadingLog) => {
     setReadingLogs((prev) =>
       prev.map((l) => (l.id === log.id ? log : l))
     );
-  }, []);
+    triggerRefresh();
+  }, [triggerRefresh]);
 
   const removeReadingLog = useCallback((id: string) => {
     setReadingLogs((prev) => prev.filter((l) => l.id !== id));
-  }, []);
+    triggerRefresh();
+  }, [triggerRefresh]);
 
   const clearReadingLogs = useCallback(() => {
     setReadingLogs([]);
@@ -100,6 +110,8 @@ export function ReadingLogProvider({
         user,
         readingLogs,
         loading,
+        refreshTrigger,
+        triggerRefresh,
         setUser,
         loadReadingLogs,
         addReadingLog,

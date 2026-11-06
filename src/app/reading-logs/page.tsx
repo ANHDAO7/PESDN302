@@ -13,7 +13,7 @@ import {
 } from "@/components/ReadingLogSummary";
 
 export default function ReadingLogsPage() {
-  const { user, setUser, loadReadingLogs, readingLogs } =
+  const { user, setUser, loadReadingLogs, readingLogs, refreshTrigger } =
     useReadingLogContext();
   const router = useRouter();
   const [authChecked, setAuthChecked] = useState(false);
@@ -68,7 +68,7 @@ export default function ReadingLogsPage() {
       .then((r) => r.json())
       .then(setSummary)
       .catch(() => {});
-  }, [authChecked, user, buildParams, loadReadingLogs, readingLogs.length]);
+  }, [authChecked, user, buildParams, loadReadingLogs, refreshTrigger]);
 
   const handleClearFilters = () => {
     setFilterGenre("");
