@@ -54,7 +54,8 @@ export async function GET(req: NextRequest) {
       return unauthorized();
     }
     console.error("GET /api/reading-logs error:", err);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    const msg = err instanceof Error ? err.message : "Internal server error";
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }
 
@@ -141,7 +142,8 @@ export async function POST(req: NextRequest) {
       return unauthorized();
     }
     console.error("POST /api/reading-logs error:", err);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    const msg = err instanceof Error ? err.message : "Internal server error";
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }
 
