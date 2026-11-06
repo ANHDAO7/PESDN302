@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ExpenseProvider } from "@/context/ExpenseContext";
+import { ReadingLogProvider } from "@/context/ReadingLogContext";
 
 export const metadata: Metadata = {
-  title: "ExpenseTrail",
-  description: "Track your personal expenses with ease",
+  title: "ReadLog",
+  description: "Track your personal reading sessions with ease",
 };
 
 export default function RootLayout({
@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased font-sans">
-        <ExpenseProvider>{children}</ExpenseProvider>
+        <ReadingLogProvider>{children}</ReadingLogProvider>
       </body>
     </html>
   );

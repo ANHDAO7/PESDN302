@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "Category" AS ENUM ('Food', 'Transport', 'Bills', 'Shopping', 'Other');
+CREATE TYPE "Genre" AS ENUM ('Fiction', 'Non-Fiction', 'Sci-Fi', 'Biography', 'Other');
 
 -- CreateTable
 CREATE TABLE "User" (
@@ -12,29 +12,28 @@ CREATE TABLE "User" (
 );
 
 -- CreateTable
-CREATE TABLE "Expense" (
+CREATE TABLE "ReadingLog" (
     "id" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
-    "title" TEXT NOT NULL,
-    "amount" DECIMAL(12,2) NOT NULL,
-    "category" "Category" NOT NULL,
+    "bookTitle" TEXT NOT NULL,
+    "minutesRead" INTEGER NOT NULL,
+    "genre" "Genre" NOT NULL,
     "note" TEXT NOT NULL DEFAULT '',
-    "starred" BOOLEAN NOT NULL DEFAULT false,
-    "spentAt" DATE NOT NULL,
+    "favorite" BOOLEAN NOT NULL DEFAULT false,
+    "readOn" DATE NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT "Expense_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "ReadingLog_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
-CREATE INDEX "Expense_userId_idx" ON "Expense"("userId");
+CREATE INDEX "ReadingLog_userId_idx" ON "ReadingLog"("userId");
 
 -- CreateIndex
-CREATE INDEX "Expense_userId_spentAt_idx" ON "Expense"("userId", "spentAt");
+CREATE INDEX "ReadingLog_userId_readOn_idx" ON "ReadingLog"("userId", "readOn");
 
 -- AddForeignKey
-ALTER TABLE "Expense" ADD CONSTRAINT "Expense_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
+ALTER TABLE "ReadingLog" ADD CONSTRAINT "ReadingLog_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

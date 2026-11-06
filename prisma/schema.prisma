@@ -12,35 +12,34 @@ datasource db {
 }
 
 model User {
-  id           String    @id @default(cuid())
-  email        String    @unique
+  id           String       @id @default(cuid())
+  email        String       @unique
   passwordHash String
-  createdAt    DateTime  @default(now())
-  expenses     Expense[]
+  createdAt    DateTime     @default(now())
+  readingLogs  ReadingLog[]
 }
 
-model Expense {
-  id        String   @id @default(cuid())
-  userId    String
-  title     String
-  amount    Decimal  @db.Decimal(12, 2)
-  category  Category
-  note      String   @default("")
-  starred   Boolean  @default(false)
-  spentAt   DateTime @db.Date
-  createdAt DateTime @default(now())
+model ReadingLog {
+  id          String   @id @default(cuid())
+  userId      String
+  bookTitle   String
+  minutesRead Int
+  genre       Genre
+  note        String   @default("")
+  favorite    Boolean  @default(false)
+  readOn      DateTime @db.Date
+  createdAt   DateTime @default(now())
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
-  @@index([userId, spentAt])
+  @@index([userId, readOn])
 }
 
-enum Category {
-  Food
-  Transport
-  Bills
-  Shopping
+enum Genre {
+  Fiction
+  Non_Fiction @map("Non-Fiction")
+  Sci_Fi      @map("Sci-Fi")
+  Biography
   Other
 }
-

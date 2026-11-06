@@ -4,7 +4,7 @@ export function unauthorized(message = "Unauthorized") {
   return NextResponse.json({ error: message }, { status: 401 });
 }
 
-export function notFound(message = "Expense not found") {
+export function notFound(message = "Reading log not found") {
   return NextResponse.json({ error: message }, { status: 404 });
 }
 
