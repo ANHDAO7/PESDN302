@@ -78,3 +78,4 @@ export function formatReadingLog(log: ReadingLog): ReadingLogShape {
     createdAt: log.createdAt.toISOString(),
   };
 }
+

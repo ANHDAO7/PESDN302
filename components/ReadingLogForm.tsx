@@ -124,22 +124,22 @@ export function ReadingLogForm() {
   };
 
   return (
-    <Card className="border-indigo-100/70 bg-white/80 backdrop-blur-md shadow-xs">
-      <CardHeader className="pb-3">
-        <CardTitle className="text-lg font-bold text-slate-800 flex items-center gap-2">
-          <span>➕</span>
-          <span>Add Reading Session</span>
+    <Card className="glass-panel border-white/80 rounded-3xl p-3 sm:p-5 shadow-lg">
+      <CardHeader className="pb-3 px-2">
+        <CardTitle className="text-base font-semibold tracking-tight text-slate-900 flex items-center gap-2">
+          <span className="w-2.5 h-2.5 rounded-full bg-pink-400 inline-block shadow-2xs"></span>
+          <span className="uppercase text-xs tracking-wider font-bold">New Session</span>
         </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="px-2">
         <form
           data-testid="reading-log-form"
           onSubmit={handleSubmit}
           noValidate
-          className="space-y-3"
+          className="space-y-3.5"
         >
           <div className="space-y-1">
-            <Label htmlFor="bookTitle" className="text-slate-700 text-xs font-semibold">
+            <Label htmlFor="bookTitle" className="text-slate-800 text-xs font-semibold uppercase tracking-wider pl-1">
               Book Title
             </Label>
             <Input
@@ -154,17 +154,17 @@ export function ReadingLogForm() {
                 }
               }}
               placeholder="e.g. Atomic Habits"
-              className="bg-white/90 text-sm"
+              className="glass-input rounded-full px-4 py-2 text-sm"
             />
             {submitted && errors.bookTitle ? (
-              <p data-testid="error-book-title" className="text-xs text-rose-500 font-medium">
+              <p data-testid="error-book-title" className="text-xs text-rose-500 font-medium pl-2">
                 {errors.bookTitle}
               </p>
             ) : null}
           </div>
 
           <div className="space-y-1">
-            <Label htmlFor="minutesRead" className="text-slate-700 text-xs font-semibold">
+            <Label htmlFor="minutesRead" className="text-slate-800 text-xs font-semibold uppercase tracking-wider pl-1">
               Minutes Read
             </Label>
             <Input
@@ -182,17 +182,17 @@ export function ReadingLogForm() {
                 }
               }}
               placeholder="e.g. 45"
-              className="bg-white/90 text-sm"
+              className="glass-input rounded-full px-4 py-2 text-sm"
             />
             {submitted && errors.minutes ? (
-              <p data-testid="error-minutes" className="text-xs text-rose-500 font-medium">
+              <p data-testid="error-minutes" className="text-xs text-rose-500 font-medium pl-2">
                 {errors.minutes}
               </p>
             ) : null}
           </div>
 
           <div className="space-y-1">
-            <Label htmlFor="genre" className="text-slate-700 text-xs font-semibold">
+            <Label htmlFor="genre" className="text-slate-800 text-xs font-semibold uppercase tracking-wider pl-1">
               Genre
             </Label>
             <select
@@ -206,7 +206,7 @@ export function ReadingLogForm() {
                   setErrors((p) => ({ ...p, genre: validateGenre(val) }));
                 }
               }}
-              className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm bg-white/90 text-slate-800 focus:outline-hidden focus:ring-2 focus:ring-indigo-500"
+              className="glass-input w-full rounded-full px-4 py-2 text-sm text-slate-800 focus:outline-hidden"
             >
               <option value="">Choose genre</option>
               {GENRE_ORDER.map((g) => (
@@ -216,14 +216,14 @@ export function ReadingLogForm() {
               ))}
             </select>
             {submitted && errors.genre ? (
-              <p data-testid="error-genre" className="text-xs text-rose-500 font-medium">
+              <p data-testid="error-genre" className="text-xs text-rose-500 font-medium pl-2">
                 {errors.genre}
               </p>
             ) : null}
           </div>
 
           <div className="space-y-1">
-            <Label htmlFor="note" className="text-slate-700 text-xs font-semibold">
+            <Label htmlFor="note" className="text-slate-800 text-xs font-semibold uppercase tracking-wider pl-1">
               Note (optional)
             </Label>
             <Input
@@ -231,13 +231,13 @@ export function ReadingLogForm() {
               data-testid="input-note"
               value={note}
               onChange={(e) => setNote(e.target.value)}
-              placeholder="Chapter 3, notes..."
-              className="bg-white/90 text-sm"
+              placeholder="Key takeaways, chapters..."
+              className="glass-input rounded-full px-4 py-2 text-sm"
             />
           </div>
 
           <div className="space-y-1">
-            <Label htmlFor="readOn" className="text-slate-700 text-xs font-semibold">
+            <Label htmlFor="readOn" className="text-slate-800 text-xs font-semibold uppercase tracking-wider pl-1">
               Date
             </Label>
             <Input
@@ -252,26 +252,26 @@ export function ReadingLogForm() {
                   setErrors((p) => ({ ...p, date: validateDate(val) }));
                 }
               }}
-              className="bg-white/90 text-sm"
+              className="glass-input rounded-full px-4 py-2 text-sm"
             />
             {submitted && errors.date ? (
-              <p data-testid="error-date" className="text-xs text-rose-500 font-medium">
+              <p data-testid="error-date" className="text-xs text-rose-500 font-medium pl-2">
                 {errors.date}
               </p>
             ) : null}
           </div>
 
           {errors.readingLog ? (
-            <div className="p-2 rounded-lg bg-rose-50 border border-rose-100">
-              <p data-testid="error-reading-log" className="text-xs text-rose-600 font-medium">
+            <div className="p-2.5 rounded-2xl bg-rose-50/90 border border-rose-200">
+              <p data-testid="error-reading-log" className="text-xs text-rose-600 font-medium pl-1">
                 {errors.readingLog}
               </p>
             </div>
           ) : null}
 
           {success ? (
-            <div className="p-2 rounded-lg bg-emerald-50 border border-emerald-100">
-              <p data-testid="reading-log-success" className="text-xs text-emerald-600 font-semibold text-center">
+            <div className="p-2.5 rounded-2xl bg-emerald-50/90 border border-emerald-200">
+              <p data-testid="reading-log-success" className="text-xs text-emerald-700 font-semibold text-center">
                 {success}
               </p>
             </div>
@@ -280,7 +280,7 @@ export function ReadingLogForm() {
           <Button
             data-testid="btn-add-reading-log"
             type="submit"
-            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 rounded-xl shadow-xs"
+            className="pill-btn w-full rounded-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-medium text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all"
             disabled={loading}
           >
             {loading ? "Adding..." : "Add Reading Session"}

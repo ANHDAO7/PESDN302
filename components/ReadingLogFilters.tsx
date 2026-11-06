@@ -26,16 +26,16 @@ export function ReadingLogFilters({
   onClear,
 }: ReadingLogFiltersProps) {
   return (
-    <Card className="border-indigo-100/70 bg-white/80 backdrop-blur-md shadow-xs">
-      <CardHeader className="pb-3">
-        <CardTitle className="text-base font-bold text-slate-800 flex items-center gap-2">
-          <span>🔍</span>
-          <span>Filters & Search</span>
+    <Card className="glass-panel border-white/80 rounded-3xl p-3 sm:p-5 shadow-lg">
+      <CardHeader className="pb-3 px-2">
+        <CardTitle className="text-base font-semibold tracking-tight text-slate-900 flex items-center gap-2">
+          <span className="w-2.5 h-2.5 rounded-full bg-sky-400 inline-block shadow-2xs"></span>
+          <span className="uppercase text-xs tracking-wider font-bold">Filter & Search</span>
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-3.5">
+      <CardContent className="space-y-3.5 px-2">
         <div className="space-y-1">
-          <Label htmlFor="filter-genre" className="text-slate-700 text-xs font-semibold">
+          <Label htmlFor="filter-genre" className="text-slate-800 text-xs font-semibold uppercase tracking-wider pl-1">
             Genre
           </Label>
           <select
@@ -43,7 +43,7 @@ export function ReadingLogFilters({
             data-testid="filter-genre"
             value={filterGenre}
             onChange={(e) => setFilterGenre(e.target.value)}
-            className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm bg-white/90 text-slate-800 focus:outline-hidden focus:ring-2 focus:ring-indigo-500"
+            className="glass-input w-full rounded-full px-4 py-2 text-sm text-slate-800 focus:outline-hidden"
           >
             <option value="">All</option>
             {GENRE_ORDER.map((g) => (
@@ -54,22 +54,22 @@ export function ReadingLogFilters({
           </select>
         </div>
 
-        <div className="flex items-center gap-2.5 pt-1">
+        <div className="flex items-center gap-2.5 pt-1 pl-1">
           <input
             id="filter-favorite"
             data-testid="filter-favorite"
             type="checkbox"
             checked={filterFavorite}
             onChange={(e) => setFilterFavorite(e.target.checked)}
-            className="h-4 w-4 rounded-sm border-slate-300 text-indigo-600 focus:ring-indigo-500 cursor-pointer"
+            className="h-4 w-4 rounded-sm border-pink-300 text-pink-500 focus:ring-pink-400 cursor-pointer accent-pink-500"
           />
-          <Label htmlFor="filter-favorite" className="text-sm font-medium text-slate-700 cursor-pointer">
+          <Label htmlFor="filter-favorite" className="text-xs font-semibold uppercase tracking-wider text-slate-700 cursor-pointer">
             Favorites only
           </Label>
         </div>
 
         <div className="space-y-1">
-          <Label htmlFor="search-input" className="text-slate-700 text-xs font-semibold">
+          <Label htmlFor="search-input" className="text-slate-800 text-xs font-semibold uppercase tracking-wider pl-1">
             Search
           </Label>
           <Input
@@ -78,8 +78,8 @@ export function ReadingLogFilters({
             type="text"
             value={searchQ}
             onChange={(e) => setSearchQ(e.target.value)}
-            placeholder="Search book title or note..."
-            className="bg-white/90 text-sm"
+            placeholder="Search title or notes..."
+            className="glass-input rounded-full px-4 py-2 text-sm"
           />
         </div>
 
@@ -87,10 +87,10 @@ export function ReadingLogFilters({
           data-testid="btn-clear-filters"
           variant="outline"
           size="sm"
-          className="w-full border-slate-200 hover:bg-slate-100 text-slate-700 font-medium"
+          className="pill-btn w-full rounded-full text-xs font-semibold uppercase tracking-wider border-slate-300/80 bg-white/50 hover:bg-white text-slate-800 shadow-2xs"
           onClick={onClear}
         >
-          Clear
+          Clear Filters
         </Button>
       </CardContent>
     </Card>

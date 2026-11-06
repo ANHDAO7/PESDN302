@@ -67,22 +67,28 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50/50 via-white to-pink-50/30">
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-b from-[#bce3fe] via-[#f7d5e4] to-[#fbcfe8]">
+      {/* Background ambient orbs */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-pink-300/40 rounded-full blur-3xl pointer-events-none -z-0" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-sky-200/50 rounded-full blur-3xl pointer-events-none -z-0" />
+
       <Header />
-      <div className="flex items-center justify-center min-h-[calc(100vh-80px)] px-4 py-12">
-        <Card className="w-full max-w-md border-indigo-100/70 bg-white/80 backdrop-blur-md shadow-lg shadow-indigo-100/40">
-          <CardHeader className="text-center pb-2">
-            <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-2xl mx-auto mb-2 border border-indigo-100">
+
+      <div className="flex items-center justify-center min-h-[calc(100vh-100px)] px-4 py-12 relative z-10">
+        <Card className="w-full max-w-md glass-panel rounded-3xl p-4 sm:p-6 border-white/80 shadow-2xl">
+          <CardHeader className="text-center pb-3">
+            <div className="w-12 h-12 rounded-2xl bg-white/70 backdrop-blur-md flex items-center justify-center text-2xl mx-auto mb-3 shadow-xs border border-white">
               📖
             </div>
-            <CardTitle className="text-2xl font-bold text-slate-900">
-              Welcome Back
+            <CardTitle className="text-2xl font-light tracking-tight text-slate-900 uppercase">
+              Sign In
             </CardTitle>
-            <p className="text-sm text-slate-500">
-              Sign in to continue your reading journey
+            <p className="text-xs text-slate-600">
+              Enter your credentials to manage your reading logs
             </p>
           </CardHeader>
-          <CardContent className="pt-4">
+
+          <CardContent className="pt-2">
             <form
               data-testid="login-form"
               onSubmit={handleSubmit}
@@ -90,7 +96,7 @@ export default function LoginPage() {
               className="space-y-4"
             >
               <div className="space-y-1.5">
-                <Label htmlFor="email" className="text-slate-700 font-medium">
+                <Label htmlFor="email" className="text-slate-800 text-xs font-semibold uppercase tracking-wider pl-1">
                   Email
                 </Label>
                 <Input
@@ -108,18 +114,18 @@ export default function LoginPage() {
                       }));
                     }
                   }}
-                  placeholder="you@example.com"
-                  className="bg-white/90 border-slate-200 focus-visible:border-indigo-500"
+                  placeholder="name@domain.com"
+                  className="glass-input rounded-full px-4 py-2.5 text-sm"
                 />
                 {submitted && errors.email ? (
-                  <p data-testid="error-email" className="text-xs text-rose-500 font-medium">
+                  <p data-testid="error-email" className="text-xs text-rose-500 font-medium pl-2">
                     {errors.email}
                   </p>
                 ) : null}
               </div>
 
               <div className="space-y-1.5">
-                <Label htmlFor="password" className="text-slate-700 font-medium">
+                <Label htmlFor="password" className="text-slate-800 text-xs font-semibold uppercase tracking-wider pl-1">
                   Password
                 </Label>
                 <Input
@@ -137,18 +143,18 @@ export default function LoginPage() {
                       }));
                     }
                   }}
-                  placeholder="Your password"
-                  className="bg-white/90 border-slate-200 focus-visible:border-indigo-500"
+                  placeholder="Enter your password"
+                  className="glass-input rounded-full px-4 py-2.5 text-sm"
                 />
                 {submitted && errors.password ? (
-                  <p data-testid="error-password" className="text-xs text-rose-500 font-medium">
+                  <p data-testid="error-password" className="text-xs text-rose-500 font-medium pl-2">
                     {errors.password}
                   </p>
                 ) : null}
               </div>
 
               {errors.auth ? (
-                <div className="p-2.5 rounded-lg bg-rose-50 border border-rose-100">
+                <div className="p-2.5 rounded-2xl bg-rose-50/80 border border-rose-200 backdrop-blur-xs">
                   <p data-testid="error-auth" className="text-xs text-rose-600 text-center font-medium">
                     {errors.auth}
                   </p>
@@ -158,16 +164,16 @@ export default function LoginPage() {
               <Button
                 data-testid="login-submit"
                 type="submit"
-                className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 rounded-xl shadow-xs transition-colors"
+                className="pill-btn w-full rounded-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-medium text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all"
                 disabled={loading}
               >
                 {loading ? "Signing in..." : "Login"}
               </Button>
 
-              <p className="text-center text-sm text-slate-500 pt-2">
-                Don&apos;t have an account?{" "}
-                <Link href="/register" className="text-indigo-600 font-semibold hover:underline">
-                  Register
+              <p className="text-center text-xs text-slate-600 pt-3">
+                Need an account?{" "}
+                <Link href="/register" className="text-pink-600 font-semibold hover:underline">
+                  Register here
                 </Link>
               </p>
             </form>

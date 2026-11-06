@@ -82,18 +82,25 @@ export default function ReadingLogsPage() {
 
   return (
     <div
-      className="min-h-screen bg-gradient-to-br from-indigo-50/50 via-white to-pink-50/30"
+      className="min-h-screen relative overflow-hidden bg-gradient-to-b from-[#bce3fe] via-[#f7d5e4] to-[#fbcfe8]"
       data-testid="reading-logs-page"
     >
+      {/* Background ambient orbs */}
+      <div className="absolute top-10 left-10 w-96 h-96 bg-pink-200/50 rounded-full blur-3xl pointer-events-none -z-0" />
+      <div className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-sky-200/50 rounded-full blur-3xl pointer-events-none -z-0" />
+
       <Header />
-      <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6">
-        <div className="mb-8">
-          <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">
-            My Reading Logs
-          </h1>
-          <p className="text-sm text-slate-500 mt-1">
-            Track, filter, and review your personal reading progress
-          </p>
+
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 py-8 relative z-10">
+        <div className="mb-8 flex items-baseline justify-between flex-wrap gap-4">
+          <div>
+            <h1 className="text-4xl sm:text-5xl font-light tracking-tight text-slate-900 uppercase">
+              Reading Logs
+            </h1>
+            <p className="text-xs text-slate-600 mt-1 uppercase tracking-wider font-semibold">
+              Live Tracker &bull; Colormix Pastel Edition
+            </p>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
@@ -113,11 +120,11 @@ export default function ReadingLogsPage() {
           </div>
 
           {/* Right Column: Sessions List */}
-          <div className="lg:col-span-2">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-bold text-slate-800">
-                Reading Sessions ({readingLogs.length})
-              </h2>
+          <div className="lg:col-span-2 space-y-4">
+            <div className="flex items-center justify-between px-2">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-700">
+                Logged Sessions ({readingLogs.length})
+              </span>
             </div>
             <ReadingLogList />
           </div>
