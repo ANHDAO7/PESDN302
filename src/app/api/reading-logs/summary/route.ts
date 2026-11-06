@@ -13,7 +13,7 @@ import { Prisma } from "@prisma/client";
 
 export async function GET(req: NextRequest) {
   try {
-    const session = await requireSession();
+    const session = await requireSession(req);
     const { searchParams } = new URL(req.url);
 
     const genre = searchParams.get("genre");

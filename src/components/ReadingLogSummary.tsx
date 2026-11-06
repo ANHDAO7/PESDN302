@@ -76,7 +76,7 @@ export function ReadingLogSummary({ summary }: ReadingLogSummaryProps) {
                       data-testid="breakdown-count"
                       className="text-[10px] text-slate-500 font-semibold bg-pink-100/60 px-2 py-0.5 rounded-full"
                     >
-                      {row.count}x
+                      {row.count}
                     </span>
                     <span
                       data-testid="breakdown-total"

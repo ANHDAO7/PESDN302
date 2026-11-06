@@ -12,7 +12,7 @@ import { Prisma } from "@prisma/client";
 // GET /api/reading-logs
 export async function GET(req: NextRequest) {
   try {
-    const session = await requireSession();
+    const session = await requireSession(req);
     const { searchParams } = new URL(req.url);
 
     const genre = searchParams.get("genre");
@@ -61,7 +61,7 @@ export async function GET(req: NextRequest) {
 // POST /api/reading-logs
 export async function POST(req: NextRequest) {
   try {
-    const session = await requireSession();
+    const session = await requireSession(req);
     const body = await req.json();
     const { bookTitle, minutesRead, genre, note, readOn } = body;
 

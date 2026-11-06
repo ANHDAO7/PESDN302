@@ -22,7 +22,10 @@ export async function POST(req: NextRequest) {
     if (password.length < 6) {
       return badRequest("Password must be at least 6 characters");
     }
-    if (!confirmPassword || confirmPassword !== password) {
+    if (!confirmPassword || (typeof confirmPassword === "string" && !confirmPassword.trim())) {
+      return badRequest("Confirm password is required");
+    }
+    if (confirmPassword !== password) {
       return badRequest("Passwords do not match");
     }
 

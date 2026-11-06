@@ -33,16 +33,6 @@ export function Header() {
     router.refresh();
   };
 
-  if (checking) {
-    return (
-      <header className="px-6 py-5 flex items-center justify-between max-w-7xl mx-auto">
-        <div className="font-semibold tracking-widest text-xs uppercase text-slate-700">
-          READLOG
-        </div>
-      </header>
-    );
-  }
-
   return (
     <header className="px-6 sm:px-10 py-5 flex items-center justify-between max-w-7xl mx-auto relative z-40">
       <div className="flex items-center gap-8">

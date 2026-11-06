@@ -22,15 +22,27 @@ export function verifyToken(token: string): SessionPayload | null {
   }
 }
 
-export async function getSession(): Promise<SessionPayload | null> {
-  const cookieStore = await cookies();
-  const token = cookieStore.get(COOKIE_NAME)?.value;
+import { NextRequest } from "next/server";
+
+export async function getSession(req?: NextRequest): Promise<SessionPayload | null> {
+  let token: string | undefined;
+  if (req) {
+    token = req.cookies.get(COOKIE_NAME)?.value;
+  }
+  if (!token) {
+    try {
+      const cookieStore = await cookies();
+      token = cookieStore.get(COOKIE_NAME)?.value;
+    } catch {
+      // ignore
+    }
+  }
   if (!token) return null;
   return verifyToken(token);
 }
 
-export async function requireSession(): Promise<SessionPayload> {
-  const session = await getSession();
+export async function requireSession(req?: NextRequest): Promise<SessionPayload> {
+  const session = await getSession(req);
   if (!session) {
     throw new Error("Unauthorized");
   }
