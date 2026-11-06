@@ -40,6 +40,11 @@ yarn-error.log*
 # vercel
 .vercel
 
+# submission
+QE190037/
+*.zip
+*.docx
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
